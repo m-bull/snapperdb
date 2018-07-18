@@ -179,7 +179,7 @@ class SNPdb:
 
     def add_cluster(self):
         cur = self.snpdb_conn.cursor()
-        cur.execute("insert into strain_clusters (name, t250, t100, t50, t25, t10, t5, t0) VALUES (\'%s\',1,1,1,1,1,1,1)" % self.reference_genome)
+        cur.execute("insert into strain_clusters (name, t250, t100, t50, t25, t10, t5, t2, t0) VALUES (\'%s\',1,1,1,1,1,1,1,1)" % self.reference_genome)
         self.snpdb_conn.commit()
 
  # -------------------------------------------------------------------------------------------------
@@ -427,18 +427,18 @@ class SNPdb:
         #get list of strain
         cur = self.snpdb_conn.cursor()
         if thresh == 'All':
-            sql = "select name, t250, t100, t50, t25, t10, t5, t0 from strain_clusters"
+            sql = "select name, t250, t100, t50, t25, t10, t5, t2, t0 from strain_clusters"
             cur.execute(sql)
         elif re.match('t\d+:\d+$',thresh):
             (t,clust) = thresh.split(':')
-            sql = "select name, t250, t100, t50, t25, t10, t5, t0 from strain_clusters where %s = %s" % (t,clust)
+            sql = "select name, t250, t100, t50, t25, t10, t5, t2, t0 from strain_clusters where %s = %s" % (t,clust)
         else:
             sys.stderr.write('Threshold command malformed\n')
             sys.exit()
         cur.execute(sql)
         rows = cur.fetchall()
         for row in rows:
-            print row[0] + "\t" + str(row[1])+"."+str(row[2])+"."+str(row[3])+"."+str(row[4])+"."+str(row[5])+"."+str(row[6])+"."+str(row[7])
+            print row[0] + "\t" + str(row[1])+"."+str(row[2])+"."+str(row[3])+"."+str(row[4])+"."+str(row[5])+"."+str(row[6])+"."+str(row[7])+"."+str(row[8])
 
 
 # -------------------------------------------------------------------------------------------------
