@@ -1,3 +1,5 @@
 include *.txt
 include *.rm
 recursive-include docs *.txt
+include snapperdb/snpdb/template_snapperdb_denovo_refs_sql
+include snapperdb/snpdb/clean_snpdb.backup
