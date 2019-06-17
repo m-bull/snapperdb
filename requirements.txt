@@ -1,5 +1,5 @@
 biopython==1.65
-psycopg2
+psycopg2-binary
 paramiko
 hashids
 joblib
